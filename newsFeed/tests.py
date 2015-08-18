@@ -28,6 +28,17 @@ class CreatePageTest(TestCase):
 		expected_html = render_to_string('create.html')
 		self.assertEqual(response.content.decode(), expected_html)
 
+	def test_create_page_can_save_a_post_request(self):
+		request = HttpRequest()
+		request.method = 'POST'
+		request.POST['name', 'phone', 'text'] = ['Matt', '808', 'text']
+
+		response = create_page(request)
+		self.assertIn('Matt', response.content.decode())
+		self.assertIn('808', response.content.decode())
+		self.assertIn('text', response.content.decode())
+
+
 class FeedPageTest(TestCase):
 
 	def test_feed_page_url_resolves_to_feed_page(self):
