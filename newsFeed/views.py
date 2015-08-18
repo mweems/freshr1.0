@@ -2,3 +2,9 @@ from django.shortcuts import render
 
 def home_page(request):
 	return render(request, 'home.html')
+
+def create_page(request):
+	return render(request, 'create.html')
+
+def feed_page(request):
+	return render(request, 'feed.html')

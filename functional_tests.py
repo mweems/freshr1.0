@@ -24,6 +24,20 @@ class NewFishermanTest(unittest.TestCase):
 		create_post_url = self.browser.current_url
 		self.assertRegex(create_post_url, '/newsFeed/create')
 
+	def test_can_get_to_feed_page_from_home_page(self):
+		self.browser.get('http://localhost:8000')
+		self.assertIn('Freshr', self.browser.title)
+		header_text = self.browser.find_element_by_tag_name('h1').text
+		self.assertIn('Freshr', header_text)
+
+		sell_button = self.browser.find_element_by_id('sell_fish')
+		buy_button = self.browser.find_element_by_id('buy_fish')
+
+		buy_button.send_keys(Keys.ENTER)
+
+		create_post_url = self.browser.current_url
+		self.assertRegex(create_post_url, '/newsFeed/feed')
+
 
 if __name__== '__main__':
 	unittest.main(warnings='ignore')
