@@ -1,5 +1,15 @@
-<table id='feed_table'>
-	<tr><td>{{ name }}</td></tr> 
-	<tr><td>{{ phone }}</td></tr> 
-	<tr><td>{{ text }}</td></tr>
-</table>
+<html>
+<head>
+	<title>Freshr NewsFeed</title>
+</head>
+<body>
+	<table id='feed_table'>
+		{% for item in items %}
+		<tr><td>{{ item.name }}</td></tr> 
+		<tr><td>{{ item.phone }}</td></tr> 
+		<tr><td>{{ item.text }}</td></tr>
+		{% endfor %}
+	</table>
+	<p><a id="create_post" class="btn btn-lg btn-success" href="/newsFeed/create" role="button">Create Post</a></p>
+</body>
+</html>
