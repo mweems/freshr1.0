@@ -1,8 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
+from django.test import LiveServerTestCase
+import time
 
-class NewFishermanTest(unittest.TestCase):
+class NewFishermanTest(LiveServerTestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
@@ -11,7 +12,7 @@ class NewFishermanTest(unittest.TestCase):
 		self.browser.quit()
 
 	def test_can_get_to_create_post_page_from_home_page(self):
-		self.browser.get('http://localhost:8000')
+		self.browser.get(self.live_server_url)
 		self.assertIn('Freshr', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('Freshr', header_text)
@@ -25,7 +26,7 @@ class NewFishermanTest(unittest.TestCase):
 		self.assertRegex(create_post_url, '/newsFeed/create')
 
 	def test_can_get_to_feed_page_from_home_page(self):
-		self.browser.get('http://localhost:8000')
+		self.browser.get(self.live_server_url)
 		self.assertIn('Freshr', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('Freshr', header_text)
@@ -39,7 +40,8 @@ class NewFishermanTest(unittest.TestCase):
 		self.assertRegex(feed_post_url, '/newsFeed/feed')
 
 	def test_submitting_redirects_to_feed_page(self):
-		self.browser.get('http://localhost:8000/newsFeed/create')
+		self.browser.get(self.live_server_url)
+		sell_button = self.browser.find_element_by_id('sell_fish').send_keys(Keys.ENTER)
 		self.assertIn('Freshr Create Post', self.browser.title)
 		header_text = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('Create new post', header_text)
@@ -59,7 +61,10 @@ class NewFishermanTest(unittest.TestCase):
 		self.assertRegex(feed_post_url, '/newsFeed/feed')
 
 	def test_can_create_a_post(self):
-		self.browser.get('http://localhost:8000/newsFeed/create')
+		self.browser.get(self.live_server_url)
+		self.browser.find_element_by_id('sell_fish').send_keys(Keys.ENTER)
+		import time
+		time.sleep(.5)
 
 		nameInput = self.browser.find_element_by_id('name_input')
 		phoneInput = self.browser.find_element_by_id('phone_input')
@@ -80,7 +85,9 @@ class NewFishermanTest(unittest.TestCase):
 		self.assertIn('10lbs Tuna, $5 per lb', [row.text for row in rows])
 
 	def test_can_go_back_to_create_page(self):
-		self.browser.get('http://localhost:8000/newsFeed/create')
+		self.browser.get(self.live_server_url)
+		self.browser.find_element_by_id('sell_fish').send_keys(Keys.ENTER)
+		time.sleep(.5)
 
 		nameInput = self.browser.find_element_by_id('name_input')
 		phoneInput = self.browser.find_element_by_id('phone_input')
@@ -99,7 +106,9 @@ class NewFishermanTest(unittest.TestCase):
 		self.assertRegex(create_post_url, '/newsFeed/create')
 
 	def test_can_add_multiple_posts(self):
-		self.browser.get('http://localhost:8000/newsFeed/create')
+		self.browser.get(self.live_server_url)
+		self.browser.find_element_by_id('sell_fish').send_keys(Keys.ENTER)
+		time.sleep(.5)
 
 		nameInput = self.browser.find_element_by_id('name_input')
 		phoneInput = self.browser.find_element_by_id('phone_input')
@@ -135,8 +144,3 @@ class NewFishermanTest(unittest.TestCase):
 		self.assertIn('Paula', [row.text for row in rows])
 		self.assertIn('808-421-6970', [row.text for row in rows])
 		self.assertIn('20lbs Ahi, $5 per lb', [row.text for row in rows])
-
-
-
-if __name__== '__main__':
-	unittest.main(warnings='ignore')
