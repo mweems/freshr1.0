@@ -7,10 +7,11 @@ def home_page(request):
 
 def create_page(request):
 	if request.method == 'POST':
-		itemName = request.POST.get('name_text', 'default_name')
-		itemPhone = request.POST.get('phone_text', 'default_phone')
-		itemText = request.POST.get('item_text', 'default_text')
-		item = Item(name=itemName, phone=itemPhone, text=itemText)
+		itemName = request.POST.get('name_text', '')
+		itemPhone = request.POST.get('phone_text', '')
+		itemText = request.POST.get('item_text', '')
+		image = request.FILES.get('pic', '')
+		item = Item(name=itemName, phone=itemPhone, text=itemText, image=image)
 		item.save()
 		return redirect('/newsFeed/feed')
 
@@ -19,5 +20,5 @@ def create_page(request):
 def feed_page(request):
 	items = Item.objects.all()
 	return render(request, 'feed.html', 
-		{'items': items}
+		{'items': items},
 	)
