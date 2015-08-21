@@ -5,12 +5,13 @@
 <body>
 	<table id='feed_table'>
 		{% for item in items %}
-		<tr><td>{{ item.name }}</td></tr> 
-		<tr><td>{{ item.phone }}</td></tr> 
-		<tr><td>{{ item.text }}</td></tr>
-		{% if item.image %}
-		<tr><td><img src="" width='90' height='90' /></td></tr>
-		{% endif %}
+			<tr><td>{{ item.name }}</td></tr> 
+			<tr><td>{{ item.phone }}</td></tr> 
+			<tr><td>{{ item.text }}</td></tr>
+			{% if item.image %}
+				{% load staticfiles %}
+				<tr><td><img src='{% static "images/fish/IMG_8876.JPG" %}' width='90' height='90' /></td></tr>
+			{% endif %}
 		{% endfor %}
 	</table>
 	<p><a id="create_post" class="btn btn-lg btn-success" href="/newsFeed/create" role="button">Create Post</a></p>

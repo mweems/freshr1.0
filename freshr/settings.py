@@ -102,4 +102,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = 'newsFeed/images/'
+MEDIA_ROOT = '/newsFeed/static/images/'

@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from newsFeed import views
 
+
 urlpatterns = [
 	url(r'^$', views.home_page, name='home'),
 	url(r'^newsFeed/create$', views.create_page, name='create'),
