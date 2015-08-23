@@ -10,7 +10,7 @@
 			<tr><td>{{ item.text }}</td></tr>
 			{% if item.image %}
 				{% load staticfiles %}
-				<tr><td><img src='{% static "images/fish/IMG_8876.JPG" %}' width='90' height='90' /></td></tr>
+				<tr><td><img src='{% static "images/" %}{{ item.image }}' width='90' height='90' /></td></tr>
 			{% endif %}
 		{% endfor %}
 	</table>
