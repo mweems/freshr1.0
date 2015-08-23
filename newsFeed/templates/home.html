@@ -3,6 +3,10 @@
 		<title>Freshr</title>
 	</head>
 	<body>
+		{% load staticfiles %}
+		<header>
+			<a href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
+		</header>
 		<h1>Freshr</h1>
 		<p><a id="sell_fish" class="btn btn-lg btn-success" href="/newsFeed/create" role="button">Sell Fish</a></p>
         <p><a id="buy_fish" class="btn btn-lg btn-success" href="/newsFeed/feed" role="button">Buy Fish</a></p>
