@@ -1,42 +1,36 @@
 <html>
-<head>
-	<title>Freshr NewsFeed</title>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
-
-</head>
-<body>
-	{% load staticfiles %}
-	<nav id="myNavbar" class="navbar navbar-default">
-			<div class="navbar-header">
-				<div class="container-fluid">
-					<a class="brand" href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
-				</div>
-			</div>
-		</nav>
-		
-			<div class="row">    
-            {% for item in items %}
-            <div class="container text-left"> 
-              <h3>{{item.name}}</h3>
-              <h3>{{item.phone}}</h3>
-              <p>{{item.text}}</p>
-                {% if item.image %}
-				{% load staticfiles %}
-              <div class="story-img"><img src='{% static "images/" %}{{ item.image }}' width='90' height='90' /></div>
-              	{% endif %}
-        </div>
-        </div>
-		{% endfor %}
-          <hr>
-		
-		<div class="text-center">
-			<p><a id="create_post" class="btn btn-primary" href="/newsFeed/create" role="button">Create Post</a></p>
-		</div>
-			
-          	
+	<head>
+		<title>Freshr NewsFeed</title>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 	
-</body>
+	</head>
+	<body>
+		{% load staticfiles %}
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	        <div class="navbar-header">
+				<a class="brand" href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
+			
+			<div class="navbar-btn">
+				<a id="create_post" href="/newsFeed/create">Create New Post</a>
+			</div> 
+			</div>      
+		</nav>	
+		
+		<div class="row">    
+	     	{% for item in items %}
+	        <div class="container text-left"> 
+	            <h2 class="text-primary">{{item.name}}</h2>
+	            <h3 class="text-primary">{{item.phone}}</h3>
+	            <p>{{item.text}}</p>
+	            {% if item.image %}
+	             <div class="story-img"><img src='{% static "images/" %}{{ item.image }}' width='280' height='250' /></div>
+	            {% endif %}
+	            <hr/>
+	        </div>
+	        {% endfor %}
+	    </div>
+	</body>
 </html>

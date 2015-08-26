@@ -8,20 +8,17 @@
 	</head>
 	<body>
 		{% load staticfiles %}
-			<nav id="myNavbar" class="navbar navbar-default">
-				<div class="navbar-header">
-					<div class="container-fluid">
-						<a class="brand" href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
-					</div>
-				</div>
-			</nav>
-		
+		<nav id="myNavbar" class="navbar navbar-default">
+			<div class="navbar-header">
+				<a class="brand" href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
+			</div>
+		</nav>
 		<div class="row">
-    	        <div class="text-center">
-					<h1 class="text-primary"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="100" width="240" /></h1>
-					<p><a id="sell_fish" class="btn btn-lg" href="/newsFeed/create" role=	"button">Sell Fish</a></p>
-    	    		<p><a id="buy_fish" class="btn btn-lg" href="/newsFeed/feed" role="	button">Buy Fish</a></p>
-    	    	</div>
+    	    <div class="text-center">
+				<h1 class="text-primary"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="100" width="240" /></h1>
+				<p><a id="sell_fish" class="btn btn-primary" href="/newsFeed/create" role="button">Sell Fish</a></p>
+    	    	<p><a id="buy_fish" class="btn btn-primary" href="/newsFeed/feed" role="button">Buy Fish</a></p>
+    	    </div>
     	</div>
 	</body>	
 </html>
