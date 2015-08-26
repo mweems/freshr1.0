@@ -1,16 +1,38 @@
 <html>
 <head>
 	<title>Freshr Create Post</title>
+	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 </head>
+{% load staticfiles %}
 <body>
-	<form enctype="multipart/form-data" method='POST'>
-		<h1>Create new post</h1>
-		<input type='text' id='name_input' name='name_text' placeholder='Your Name' />
-		<input type='text' id='phone_input' name='phone_text' placeholder='Your Phone Number' /><br>
-		<textarea id='text_input' name='item_text' placeholder='What you are selling'></textarea><br>
-		<input type="file" name="pic" accept="image/*">
-		<input type='submit' id='submit' title='submit' />
-		{% csrf_token %}
-	</form>
+	
+		<nav id="myNavbar" class="navbar navbar-default">
+			<div class="navbar-header">
+				<div class="container-fluid">
+					<a class="brand" href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
+				</div>
+			</div>
+		</nav>
+		<form enctype="multipart/form-data" method='POST'>
+			<div class="container-fluid">
+				<div class="text-left-align">
+						<h1 class="text-primary">Create new post</h1>
+						<input type='text' id='name_input' name='name_text' placeholder='Your Name' /><br/>
+						<br/>
+						<input type='text' id='phone_input' name='phone_text' placeholder='Your Phone Number' /><br>
+						<br/>
+						<textarea id='text_input' name='item_text' placeholder='What you are selling'></textarea><br/>
+						<br/>
+						<input type="file" name="pic" accept="image/*">
+						<br/>
+						<input class="btn btn-primary" type='submit' id='submit' title='submit' />
+				</div>
+			{% csrf_token %}
+			</div>
+		</form>	
+	
 </body>
 </html>

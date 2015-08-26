@@ -1,14 +1,27 @@
 <html>
 	<head>
 		<title>Freshr</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 	</head>
 	<body>
 		{% load staticfiles %}
-		<header>
-			<a href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
-		</header>
-		<h1>Freshr</h1>
-		<p><a id="sell_fish" class="btn btn-lg btn-success" href="/newsFeed/create" role="button">Sell Fish</a></p>
-        <p><a id="buy_fish" class="btn btn-lg btn-success" href="/newsFeed/feed" role="button">Buy Fish</a></p>
+			<nav id="myNavbar" class="navbar navbar-default">
+				<div class="navbar-header">
+					<div class="container-fluid">
+						<a class="brand" href="/"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="50" width="120" /></a>
+					</div>
+				</div>
+			</nav>
+		
+		<div class="row">
+    	        <div class="text-center">
+					<h1 class="text-primary"><img src='{% static "logos/freshrlogo.png" %}' alt="logo" height="100" width="240" /></h1>
+					<p><a id="sell_fish" class="btn btn-lg" href="/newsFeed/create" role=	"button">Sell Fish</a></p>
+    	    		<p><a id="buy_fish" class="btn btn-lg" href="/newsFeed/feed" role="	button">Buy Fish</a></p>
+    	    	</div>
+    	</div>
 	</body>	
 </html>
