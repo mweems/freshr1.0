@@ -22,8 +22,8 @@
 		<div class="row">    
 	     	{% for item in items %}
 	        <div class="container text-left"> 
-	            <h2 class="text-primary">{{item.name}}</h2>
-	            <h3 class="text-primary">{{item.phone}}</h3>
+	            <h4 class="text-primary">{{item.name}}</h4>
+	            <p class="text-primary">{{item.phone}}</p>
 	            <p>{{item.text}}</p>
 	            {% if item.image %}
 	             <div class="story-img"><img src='{% static "images/" %}{{ item.image }}' width='280' height='250' /></div>
