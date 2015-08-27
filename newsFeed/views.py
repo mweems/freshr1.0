@@ -18,7 +18,7 @@ def create_page(request):
 	return render(request, 'create.html')
 
 def feed_page(request):
-	items = Item.objects.all()
+	items = Item.objects.all().order_by("-date")
 	return render(request, 'feed.html', 
 		{'items': items},
 	)

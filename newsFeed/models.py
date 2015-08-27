@@ -5,3 +5,4 @@ class Item(models.Model):
 	phone = models.TextField(default='')
 	text = models.TextField(default='')
 	image = models.ImageField(upload_to='fish/', null=True, blank=True)
+	date = models.DateTimeField(auto_now=True)
