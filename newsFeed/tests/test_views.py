@@ -44,6 +44,29 @@ class CreatePageTest(TestCase):
         self.assertEqual(new_item.phone, '808')
         self.assertEqual(new_item.text, 'text')
 
+    def test_validation_errors_are_sent_to_create_page_template(self):
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST['name_text'] = ''
+        request.POST['phone_text'] = '808'
+        request.POST['item_text'] = 'text'
+
+        response = create_page(request)
+
+        self.assertEqual(response.status_code, 200)
+        expected_error = 'Cannot have blank fields.'
+        self.assertContains(response, expected_error)
+
+    def test_invalid_list_items_are_not_saved(self):
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST['name_text'] = ''
+        request.POST['phone_text'] = '808'
+        request.POST['item_text'] = 'text'
+
+        create_page(request)
+        self.assertEqual(Item.objects.count(), 0)
+
 
 class FeedPageTest(TestCase):
     def test_feed_page_url_resolves_to_feed_page(self):

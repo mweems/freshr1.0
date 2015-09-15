@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.exceptions import ValidationError
 from newsFeed.models import Item
 
 
@@ -12,8 +13,12 @@ def create_page(request):
         itemPhone = request.POST.get('phone_text', '')
         itemText = request.POST.get('item_text', '')
         image = request.FILES.get('pic', '')
-        item = Item(name=itemName, phone=itemPhone, text=itemText, image=image)
-        item.save()
+        item = Item.objects.create(name=itemName, phone=itemPhone, text=itemText, image=image)
+        try:
+            item.full_clean()
+        except ValidationError:
+            item.delete()
+            return render(request, 'create.html', {"error": 'Cannot have blank fields.'})
         return redirect('/newsFeed/feed')
 
     return render(request, 'create.html')

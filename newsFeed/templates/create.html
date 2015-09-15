@@ -17,6 +17,11 @@
 			<div class="container-fluid">
 				<div class="text-left-align">
 					<h1 class="text-primary">Create new post</h1>
+                    {% if error %}
+                        <div class="form-group has-error">
+                            <span class="help-block">{{ error }}</span>
+                        </div>
+                    {% endif %}
 					<input type='text' id='name_input' name='name_text' placeholder='Your Name' /><br/>
 					<br/>
 					<input type='text' id='phone_input' name='phone_text' placeholder='Your Phone Number' /><br>

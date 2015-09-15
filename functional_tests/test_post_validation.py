@@ -9,30 +9,15 @@ class PostValidationTest(FunctionalTest):
         self.browser.find_element_by_id('sell_fish').send_keys(Keys.ENTER)
         time.sleep(.5)
 
-        nameInput = self.browser.find_element_by_id('name_input')
-        phoneInput = self.browser.find_element_by_id('phone_input')
-        inputBox = self.browser.find_element_by_id('text_input')
-        submit = self.browser.find_element_by_id('submit')
-
-        submit.click()
+        self.browser.find_element_by_id('submit').click()
 
         error = self.browser.find_element_by_css_selector('.has-error')
-        self.assertEqual(error.text, "You can not leave the name field blank")
+        self.assertEqual(error.text, "Cannot have blank fields.")
 
-        nameInput.send_keys('Matt')
-        submit.click()
-
-        error = self.browser.find_element_by_css_selector('.has-error')
-        self.assertEqual(error.text, "You can not leave the phone field blank")
-
-        phoneInput.send_keys('808-420-6969')
-        submit.click()
-
-        error = self.browser.find_element_by_css_selector('.has-error')
-        self.assertEqual(error.text, "You can not leave the text field blank")
-
-        inputBox.send_keys('10lbs Tuna, $5 per lb')
-        submit.click()
+        self.browser.find_element_by_id('name_input').send_keys('Matt')
+        self.browser.find_element_by_id('phone_input').send_keys('808-420-6969')
+        self.browser.find_element_by_id('text_input').send_keys('10lbs Tuna, $5 per lb')
+        self.browser.find_element_by_id('submit').click()
 
         post = self.browser.find_element_by_id('post')
 

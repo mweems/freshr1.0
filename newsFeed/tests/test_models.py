@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.core.exceptions import ValidationError
 from newsFeed.models import Item
 
 
@@ -29,3 +30,9 @@ class PostModelTest(TestCase):
         self.assertEqual(second_saved_item.name, 'Paula')
         self.assertEqual(second_saved_item.phone, '228')
         self.assertEqual(second_saved_item.text, 'other text')
+
+    def test_cannot_save_empty_list_items(self):
+        item = Item.objects.create()
+        with self.assertRaises(ValidationError):
+            item.save()
+            item.full_clean()

@@ -40,6 +40,10 @@ class NavigationTest(FunctionalTest):
         self.assertEqual(phoneInput.get_attribute('placeholder'), 'Your Phone Number')
         self.assertEqual(inputBox.get_attribute('placeholder'), 'What you are selling')
 
+        nameInput.send_keys('Matt')
+        phoneInput.send_keys('808-420-6969')
+        inputBox.send_keys('10lbs Tuna, $5 per lb')
+
         submit.click()
 
         feed_post_url = self.browser.current_url
